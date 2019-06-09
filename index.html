@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <header class="mb-3">
+        <nav class="navbar navbar-light bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-10 offset-1">
+                        <span class="navbar-brand mb-0 h1">Word Guess Game</span>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col-10 offset-1 mt-3 mb-3 border">
+                    <h4 class="mt-2 mb-0">Instructions:</h4>
+                    <hr class="p-0 mt-1 mb-1">
+                    <p>Welcome to the "Word Guess Game";  I've thought of a single word (with no spaces) and displayed it to the screen using " _ "'s, can you guess it?</p>
+                    <p>
+                        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#instructions" aria-expanded="false" aria-controls="instructions">
+                            Read the Instructions.
+                        </button>
+                        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#screenlayout" aria-expanded="false" aria-controls="screenlayout">
+                            What's on the Screen?
+                        </button>
+                    </p>
+                    <div class="collapse" id="instructions">
+                        <div class="m-3 p-2 card card-body">
+                            <b>Instructions:</b>
+                                <ul>
+                                    <li>Each game you are given a new word represented by the " _ "'s in "The Word" box.</li>
+                                    <li>You will have 3 x ( the # of original " _ "'s ) to correctly guess the word.</li>
+                                    <li>Each "guess" is completed by typing a "single" letter on your keyboard.</li>
+                                    <li>Each "letter" you guess will be tracked and recorded in the "Letter Guesses" field and your "remaining guesses" will be updated in the "Scoreboard".</li>
+                                    <li>If the "letter \ key" pressed is within the word, we will update the specific " _ " to show your sucess.</li>
+                                </ul>
+                        </div>
+                    </div>
+                    <div class="collapse" id="screenlayout">
+                        <div class="m-3 p-2 card card-body">
+                            <b>Screen Layout:</b>
+                            Below you will see boxes titled:<br>
+                            <ul>
+                                <li>"The Word"  within this box you will seee a set of " _ "; Each " _ " represents a single letter within the word.</li>
+                                <li>"Scoreboard" this will track your progress during the games: Wins; Losses; Remaining Attempts.</li>
+                                <li>"Letter Guesses" we will also include a box where each "letter" guess is tracked for the length of the game.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-5 offset-1 border p-1 mt-2 mb-3">
+                    <h4 class="mt-2 mb-0">The Word: </h4>
+                    <hr class="p-0 mt-1 mb-1">
+                    <div class="container p-2">
+                        <div class="row justify-content-center">
+                            <div class="col-10 mt-5">
+                                <p id="theWord" class="text-center"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4 offset-1 border p-1 mt-2 mb-3">
+                    <h4 class="mt-2 mb-0">The Scoreboard: </h4>
+                    <hr class="p-0 mt-1 mb-1">
+                    <div class="container p-2">
+                        <div class="row">
+                            <div class="col-6 pr-0">
+                                <h5 class="text-success">Total Wins: </h5>
+                                <h5 class="text-danger">Total Losses: </h5>
+                                <h5 class="text-info">Remaining Guesses: </h5>
+                            </div>
+                            <div class="col-3 pl-0">
+                                <h5 class="pl-2 text-success" id="totalWins">0</h5>
+                                <h5 class="pl-2 text-danger" id="totalLosses">0</h5>
+                                <h5 class="pl-2 pt-4 text-info" id="remainingGuesses"></h5>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-10 offset-1 border mt-2 mb-3">
+                    <h4 class="mt-2 mb-0">Letter Guesses:</h4>
+                    <hr class="p-0 mt-1 mb-1">
+                    <div class="container p-3" id="letterGuesses"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script>
+        var possibleWords = ["Apple", "Bananas", "Tomato", "Orange", "Pluot", "Plum", "Appricot", "Peach", "Strawberry", "Raspberry"];
+        var shhhItsaSecret = "";
+        shhhItsaSecret = possibleWords[(Math.trunc(Math.random() * 10))];
+        console.log(shhhItsaSecret);
+        var theWordId = document.getElementById("theWord");
+        var theRemainingGuessesId = document.getElementById("remainingGuesses");
+        var theletterGuessesId = document.getElementById("letterGuesses");
+        var theSecretWord = "";
+        var theLetterGuesses = "";
+        for(i=0; i < shhhItsaSecret.length; i++){
+            theSecretWord += " - "
+        };
+        theWordId.innerText = theSecretWord;
+        theRemainingGuessesId.innerText = (shhhItsaSecret.length * 3);
+        document.onkeyup = function (itsaGuess){
+            theLetterGuesses += itsaGuess.key + ", ";
+            theletterGuessesId.innerHTML = theLetterGuesses;
+        };
+
+    </script>
+</body>
+</html>
