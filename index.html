@@ -106,21 +106,37 @@
     <script>
         var possibleWords = ["Apple", "Bananas", "Tomato", "Orange", "Pluot", "Plum", "Appricot", "Peach", "Strawberry", "Raspberry"];
         var shhhItsaSecret = "";
-        shhhItsaSecret = possibleWords[(Math.trunc(Math.random() * 10))];
-        console.log(shhhItsaSecret);
         var theWordId = document.getElementById("theWord");
         var theRemainingGuessesId = document.getElementById("remainingGuesses");
         var theletterGuessesId = document.getElementById("letterGuesses");
         var theSecretWord = "";
         var theLetterGuesses = "";
-        for(i=0; i < shhhItsaSecret.length; i++){
-            theSecretWord += " - "
+
+        window.onload = function(){
+            shhhItsaSecret = possibleWords[(Math.trunc(Math.random() * 10))];
+            console.log(shhhItsaSecret);
+            for(i=0; i < shhhItsaSecret.length; i++){
+                theSecretWord += " - "
+            };
+            theWordId.innerText = theSecretWord;
+            theRemainingGuessesId.innerText = (shhhItsaSecret.length * 3);
+            
         };
-        theWordId.innerText = theSecretWord;
-        theRemainingGuessesId.innerText = (shhhItsaSecret.length * 3);
         document.onkeyup = function (itsaGuess){
-            theLetterGuesses += itsaGuess.key + ", ";
-            theletterGuessesId.innerHTML = theLetterGuesses;
+            var keyCatch = itsaGuess.key.toLowerCase();
+            if (keyCatch.length > 1){
+                alert('Please type a "letter" key you have typed "' + itsaGuess.key + '"');
+            } else if(!(keyCatch.charCodeAt(0) >= 97 && keyCatch.charCodeAt(0) <= 122)){
+                alert('Please type a "letter" key you have typed "' + itsaGuess.key + '"');
+            } else {          
+                if(theLetterGuesses.length === 0){
+                    theLetterGuesses += itsaGuess.key;
+                } else {
+                    theLetterGuesses += ", " + itsaGuess.key
+                }
+                
+                theletterGuessesId.innerHTML = theLetterGuesses;
+            }
         };
 
     </script>
