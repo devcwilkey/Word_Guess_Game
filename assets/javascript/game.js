@@ -27,7 +27,6 @@ function startTheGame(){
     theLetterGuesses = [];
     moreGuesses = true;
     shhhItsaSecret = possibleWords[(Math.trunc(Math.random() * possibleWords.length))];
-    console.log(shhhItsaSecret);
     for(i=0; i < shhhItsaSecret.length; i++){
         theSecretWordArray.push(" _ ");
     };
@@ -106,10 +105,8 @@ function checkTheSecret(keyPress){
                 indices.push(i);
             };
         };
-        console.log(indices);
         for(i=0; i < indices.length; i++){
             theSecretWordArray[indices[i]] = " " + keyPress + " ";
-            console.log(theSecretWordArray);
         };
         printTheSecret();
     };
